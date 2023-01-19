@@ -1,8 +1,4 @@
-WORKDIR /opt/app
-COPY ./ /opt/app
-RUN gradle clean build -x test
-FROM gradle:7.6.0-jdk11-alpine AS build
-COPY --from=build /opt/app/build/libs/*.jar app.jar
-ENV PORT 8080
-EXPOSE $PORT
-ENTRYPOINT ["java", "-jar", "-Xmx1024M", "-Dserver.port=${PORT}", "app.jar"]
+FROM gradle:7.6.0-jdk11-alpine
+WORKDIR /app
+COPY build/libs/spring-jenkins-deploy-test-project-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
