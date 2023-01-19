@@ -5,7 +5,7 @@ node {
     try {
 
         stage('Initialize'){
-                 def dockerHome = tool 'dockerJenkins'
+                 def dockerHome = tool 'jenkinsDocker'
                  env.PATH = "${dockerHome}/bin:${env.PATH}"
              }
 
