@@ -11,6 +11,7 @@ node {
         }
 
         stage('Build Docker') {
+            sh "ls"
             sh "docker build . -t desofme/spring-boot-jenkins-deploy"
         }
 
