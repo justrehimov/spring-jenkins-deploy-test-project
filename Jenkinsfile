@@ -3,21 +3,12 @@ node {
     def dockerImageTag = "spring-boot-jenkins-deploy:${env.BUILD_NUMBER}"
 
     try {
-        stage('Clone Repo') {
-            git url: 'https://github.com/justrehimov/spring-jenkins-deploy-test-project.git'
-            credentialsId: 'justrehimov'
-            branch: 'master'
-        }
-
-        stage('Build Docker') {
-            sh "docker images"
-            sh "ls"
-            sh "docker build -t justrehimov/spring-boot-jenkins-deploy"
+        stage('Build Project') {
+            sh "gradle clea build"
+            sh "gradle spring-boot:run"
         }
 
     } catch(e) {
         throw e
     }
-
-
 }
