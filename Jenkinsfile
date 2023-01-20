@@ -4,7 +4,7 @@ node {
 
     try {
         stage('Build Project') {
-            sh "gradle clea build"
+            sh "gradle clean build"
             sh "gradle spring-boot:run"
         }
 
