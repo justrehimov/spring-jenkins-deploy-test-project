@@ -3,12 +3,6 @@ node {
     def dockerImageTag = "spring-boot-jenkins-deploy:${env.BUILD_NUMBER}"
 
     try {
-
-        stage('Initialize'){
-                 def dockerHome = tool 'jenkinsDocker'
-                 env.PATH = "${dockerHome}/bin:${env.PATH}"
-             }
-
         stage('Clone Repo') {
             git url: 'https://github.com/justrehimov/spring-jenkins-deploy-test-project.git'
             credentialsId: 'justrehimov'
@@ -18,7 +12,7 @@ node {
         stage('Build Docker') {
             sh "docker images"
             sh "ls"
-            sh "docker build -t desofme/spring-boot-jenkins-deploy"
+            sh "docker build -t justrehimov/spring-boot-jenkins-deploy"
         }
 
     } catch(e) {
